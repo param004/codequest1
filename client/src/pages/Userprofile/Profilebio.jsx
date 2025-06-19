@@ -1,30 +1,18 @@
-import React from 'react'
+import React from "react";
 
-const Profilebio = ({currentprofile}) => {
+const Profilebio = ({ currentprofile }) => {
   return (
-    <div>
-      <div>
-        {currentprofile?.tags.length !==0? (
-          <>
-          <h4>Tags watched</h4>
-          {currentprofile?.tags.map((tag)=>(
-            <p key={tag}>{tag}</p>
-          ))}
-          </>
-        ):(
-          <p> 0 Tags watched</p>
-        )}
-      </div>
-      <div>{currentprofile?.about ? (
-        <> 
-        <h4>About</h4>
-        <p>{currentprofile?.about}</p>
-        </>
-      ):(
-        <p>No bio found</p>
-      )}</div>
+    <div className="profile-info-card">
+      <h2>About</h2>
+      <p>{currentprofile.about && currentprofile.about.trim() !== "" ? currentprofile.about : "No bio yet."}</p>
+      <h3>Watched Tags</h3>
+      <span>
+        {Array.isArray(currentprofile.tags) && currentprofile.tags.length > 0
+          ? currentprofile.tags.join(", ")
+          : "No tags yet."}
+      </span>
     </div>
-  )
-}
+  );
+};
 
-export default Profilebio
+export default Profilebio;
